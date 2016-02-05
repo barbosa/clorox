@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys, os, re
 import getopt
 
@@ -10,7 +11,7 @@ class Matcher:
         "\/\/.*\n"
         "\/\/\n"
         "\/\/\s{2}Created by\s.*\son\s\d{1,2}\/\d{1,2}\/\d{2}\.\n"
-        "\/\/\s{2}Copyright\s\(c\)\s\d{4}\s.*\.\sAll rights reserved\.\n"
+        "\/\/\s{2}Copyright\s(\(c\)|©)\s\d{4}\s.*\.\sAll rights reserved\.\n"
         "\/\/\n"
     )
 

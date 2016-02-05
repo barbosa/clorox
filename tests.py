@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 import unittest
 import textwrap
 from clorox import Matcher
+
 
 class MatcherTestCase(unittest.TestCase):
 
@@ -77,7 +79,16 @@ class MatcherTestCase(unittest.TestCase):
         assert Matcher(header).matches()
 
     def test_matcher_with_special_copyright_character(self):
-        pass
+        header = (""
+        "//\n"
+        "//  MyFile.m\n"
+        "//  MyCompany\n"
+        "//\n"
+        "//  Created by John Appleseed on 12/18/15.\n"
+        "//  Copyright © 2015 MyCompany. All rights reserved.\n"
+        "//\n")
+
+        assert Matcher(header).matches()
 
 if __name__ == '__main__':
     unittest.main()
