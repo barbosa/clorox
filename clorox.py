@@ -25,12 +25,13 @@ class Clorox:
 
     ALLOWED_FORMATS = ('.swift', '.h', '.m')
 
-    def __init__(self, passive):
+    def __init__(self, root_path, passive):
+        self.root_path = root_path
         self.passive = passive
 
     def run(self):
         total_files, modified_files = 0, 0
-        for root, dirs, files_list in os.walk('.'):
+        for root, dirs, files_list in os.walk(self.root_path):
             for file_path in files_list:
                 if not file_path.endswith(self.ALLOWED_FORMATS):
                     continue
@@ -68,6 +69,10 @@ def main(argv):
         usage()
         sys.exit(2)
 
+    if not args:
+        usage()
+        sys.exit()
+
     passive = False
     for opt, arg in opts:
         if opt in ("-h", "--help"):
@@ -76,7 +81,8 @@ def main(argv):
         if opt in ("-p", "--passive"):
             passive = True
 
-    Clorox(passive).run()
+    root_path = "".join(args)
+    Clorox(root_path, passive).run()
 
 def usage():
     print "Usage:"
