@@ -4,7 +4,15 @@ import getopt
 
 class Matcher:
 
-    HEADER_TEMPLATE = r"\/\/\n\/\/.*\..*\n\/\/.*\n\/\/\n\/\/\s{2}Created by\s.*\son\s\d{1,2}\/\d{1,2}\/\d{2}\.\n\/\/\s{2}Copyright\s\(c\)\s\d{4}\s.*\.\sAll rights reserved\.\n\/\/\n"
+    HEADER_TEMPLATE = (r""
+        "\/\/\n"
+        "\/\/.*\..*\n"
+        "\/\/.*\n"
+        "\/\/\n"
+        "\/\/\s{2}Created by\s.*\son\s\d{1,2}\/\d{1,2}\/\d{2}\.\n"
+        "\/\/\s{2}Copyright\s\(c\)\s\d{4}\s.*\.\sAll rights reserved\.\n"
+        "\/\/\n"
+    )
 
     def __init__(self, header):
         self.header = header
