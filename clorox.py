@@ -1,6 +1,7 @@
 import sys, os, re
 
-HEADER_TEMPLATE = r"\/\/\n\/\/.*\.swift\n\/\/.*\n\/\/\n\/\/\s{2}Created by\s.*\son\s\d{1,2}\/\d{1,2}\/\d{2}\.\n\/\/\s{2}Copyright\s\(c\)\s\d{4}\s.*\.\sAll rights reserved\.\n\/\/\n"
+ALLOWED_FORMATS = ('.swift', '.h', '.m')
+HEADER_TEMPLATE = r"\/\/\n\/\/.*\..*\n\/\/.*\n\/\/\n\/\/\s{2}Created by\s.*\son\s\d{1,2}\/\d{1,2}\/\d{2}\.\n\/\/\s{2}Copyright\s\(c\)\s\d{4}\s.*\.\sAll rights reserved\.\n\/\/\n"
 
 class Clorox:
 
@@ -11,9 +12,9 @@ class Clorox:
 
     def run(self):
         total_files, modified_files = 0, 0
-        for root, dirs, files_list in os.walk("."):
+        for root, dirs, files_list in os.walk('.'):
             for file_path in files_list:
-                if not file_path.endswith(".swift"):
+                if not file_path.endswith(ALLOWED_FORMATS):
                     continue
                 total_files = total_files + 1
                 full_path = os.path.join(root, file_path)
