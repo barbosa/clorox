@@ -3,6 +3,7 @@
 import sys, os
 import getopt
 from matcher import Matcher
+from printer import Printer
 
 
 class Clorox:
@@ -12,6 +13,7 @@ class Clorox:
     def __init__(self, root_path, passive):
         self.root_path = root_path
         self.passive = passive
+        self.printer = Printer(root_path)
 
     def run(self):
         total_files, modified_files = 0, 0
@@ -31,29 +33,14 @@ class Clorox:
 
                     if current_dir != root:
                         current_dir = root
-                        self._print_tabbed(current_dir)
-                    self._print_tabbed(full_path)
+                        self.printer.print_path(current_dir)
+                    self.printer.print_path(full_path)
 
         print "Total files {0}".format(total_files)
         if self.passive:
             print "Not yet modified files: {0}".format(modified_files)
         else:
             print "Modified files: {0}".format(modified_files)
-
-    def _get_depth(self, path):
-        if path == self.root_path:
-            return 0
-        if os.path.isdir(path):
-            return len(os.path.relpath(path, self.root_path).split('/'))
-        else:
-            return self._get_depth(os.path.dirname(path)) + 1
-
-    def _print_tabbed(self, path):
-        name = os.path.basename(path)
-        if os.path.isdir(path):
-            print '{0}[{1}]'.format('  ' * self._get_depth(path), name)
-        else:
-            print '{0}{1}'.format('  ' * self._get_depth(path), name)
 
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
