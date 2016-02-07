@@ -1,3 +1,4 @@
+# !/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys, os, re
 import getopt
@@ -20,6 +21,7 @@ class Matcher:
 
     def matches(self):
         return re.match(self.HEADER_TEMPLATE, self.header) is not None
+
 
 class Clorox:
 
@@ -54,13 +56,15 @@ class Clorox:
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
             content = file.readlines()
-            header = ''.join(content[:8])
-            updated_content = content[8:]
+            header_height = Matcher.HEADER_TEMPLATE.count('\n') + 1
+            header = ''.join(content[:header_height])
+            updated_content = content[header_height:]
         return Matcher(header).matches(), updated_content
 
     def _remove_header(self, file_path, updated_content):
         with open(file_path, 'w') as file:
             file.writelines(updated_content)
+
 
 def main(argv):
     try:
@@ -71,7 +75,7 @@ def main(argv):
 
     if not args:
         usage()
-        sys.exit()
+        sys.exit(2)
 
     passive = False
     for opt, arg in opts:
@@ -84,6 +88,7 @@ def main(argv):
     root_path = "".join(args)
     Clorox(root_path, passive).run()
 
+
 def usage():
     print "Usage:"
     print "    clorox [PATH] [OPTIONS]"
@@ -94,6 +99,7 @@ def usage():
     print "Options:"
     print "    --passive, -p       prints the output without running the script"
     print "    --help, -h          prints this help message"
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])
