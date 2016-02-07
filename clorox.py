@@ -23,6 +23,10 @@ class Matcher:
         return re.match(self.HEADER_TEMPLATE, self.header) is not None
 
 
+class Printer:
+    pass # TODO
+
+
 class Clorox:
 
     ALLOWED_FORMATS = ('.swift', '.h', '.m')
@@ -33,6 +37,7 @@ class Clorox:
 
     def run(self):
         total_files, modified_files = 0, 0
+        current_dir = None
         for root, dirs, files_list in os.walk(self.root_path):
             for file_path in files_list:
                 if not file_path.endswith(self.ALLOWED_FORMATS):
@@ -41,17 +46,36 @@ class Clorox:
                 full_path = os.path.join(root, file_path)
                 has_header, updated_content = self._has_xcode_header(full_path)
                 if has_header:
-                    if self.passive:
-                        print full_path
-                    else:
+                    if not self.passive:
                         self._remove_header(full_path, updated_content)
+
                     modified_files = modified_files + 1
+
+                    if current_dir != root:
+                        current_dir = root
+                        self._print_tabbed(current_dir)
+                    self._print_tabbed(full_path)
 
         print "Total files {0}".format(total_files)
         if self.passive:
             print "Not yet modified files: {0}".format(modified_files)
         else:
             print "Modified files: {0}".format(modified_files)
+
+    def _get_depth(self, path):
+        if path == self.root_path:
+            return 0
+        if os.path.isdir(path):
+            return len(os.path.relpath(path, self.root_path).split('/'))
+        else:
+            return self._get_depth(os.path.dirname(path)) + 1
+
+    def _print_tabbed(self, path):
+        name = os.path.basename(path)
+        if os.path.isdir(path):
+            print '{0}[{1}]'.format('  ' * self._get_depth(path), name)
+        else:
+            print '{0}{1}'.format('  ' * self._get_depth(path), name)
 
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
