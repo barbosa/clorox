@@ -7,12 +7,15 @@ class Printer:
     def __init__(self, root_path):
         self.root_path = root_path
 
+    def print_start(self):
+        print
+
     def print_path(self, path):
         name = os.path.basename(path)
         if os.path.isdir(path):
             print Color.HEADER + u'{0}{1}/'.format('  ' * self._get_depth(path), name) + Color.END
         else:
-            print u'{0}{1}'.format('  ' * self._get_depth(path), name)
+            print u'{0}{1} {2}'.format('  ' * self._get_depth(path), name, Color.OKGREEN + '(done)' + Color.END)
 
     def _get_depth(self, path):
         if path == self.root_path:
@@ -34,3 +37,4 @@ class Color:
 
 class Emoji:
     CHECKMARK = u'\U00002705'
+    ROCKET = u'\U0001F680'
