@@ -4,18 +4,21 @@ import os
 
 class Printer:
 
-    def __init__(self, root_path):
+    def __init__(self, root_path, passive):
         self.root_path = root_path
+        self.passive = passive
 
     def print_start(self):
-        print
+        print u'{0} Running '
 
     def print_path(self, path):
         name = os.path.basename(path)
         if os.path.isdir(path):
-            print Color.HEADER + u'{0}{1}/'.format('  ' * self._get_depth(path), name) + Color.END
+            print Color.PURPLE + u'{0}{1}/'.format('  ' * self._get_depth(path), name) + Color.END
         else:
-            print u'{0}{1} {2}'.format('  ' * self._get_depth(path), name, Color.OKGREEN + '(done)' + Color.END)
+            color = Color.YELLOW if self.passive else Color.GREEN
+            feedback = '(would be modified)' if self.passive else '(done)'
+            print u'{0}{1} {2}'.format('  ' * self._get_depth(path), name, self._colored(feedback, color))
 
     def _get_depth(self, path):
         if path == self.root_path:
@@ -25,12 +28,15 @@ class Printer:
         else:
             return self._get_depth(os.path.dirname(path)) + 1
 
+    def _colored(self, string, color):
+        return '%s%s%s' % (color, string, Color.END)
+
 class Color:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
+    PURPLE = '\033[95m'
+    BLUE = '\033[94m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
     END = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'

@@ -13,7 +13,7 @@ class Clorox:
     def __init__(self, root_path, passive):
         self.root_path = root_path
         self.passive = passive
-        self.printer = Printer(root_path)
+        self.printer = Printer(root_path, passive)
 
     def run(self):
         total_files, modified_files = 0, 0
@@ -36,9 +36,9 @@ class Clorox:
                         self.printer.print_path(current_dir)
                     self.printer.print_path(full_path)
 
-        print "Total files {0}".format(total_files)
+        print "\nTotal files {0}".format(total_files)
         if self.passive:
-            print "Not yet modified files: {0}".format(modified_files)
+            print "Files it would modify: {0}".format(modified_files)
         else:
             print "Modified files: {0}".format(modified_files)
 
