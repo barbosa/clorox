@@ -36,7 +36,7 @@ class Clorox:
                         self.printer.print_path(current_dir)
                     self.printer.print_path(full_path)
 
-        print "\nTotal files {0}".format(total_files)
+        print "\nTotal files: {0}".format(total_files)
         if self.passive:
             print "Files it would modify: {0}".format(modified_files)
         else:
