@@ -9,6 +9,11 @@ from printer import Printer
 class Clorox:
 
     ALLOWED_FORMATS = ('.swift', '.h', '.m')
+    IGNORED_DIRS = (
+        '.xcdatamodel', '.xcdatamodeld'
+        '.xcassets', '.imageset',
+        '.bundle', '.framework', '.lproj'
+    )
 
     def __init__(self, root_path, passive):
         self.root_path = root_path
@@ -19,6 +24,13 @@ class Clorox:
         total_files, modified_files = 0, 0
         current_dir = None
         for root, dirs, files_list in os.walk(self.root_path):
+            if root.endswith(self.IGNORED_DIRS):
+                continue
+
+            if current_dir != root:
+                current_dir = root
+                self.printer.print_dir(current_dir)
+
             for file_path in files_list:
                 if not file_path.endswith(self.ALLOWED_FORMATS):
                     continue
@@ -26,17 +38,14 @@ class Clorox:
                 full_path = os.path.join(root, file_path)
                 has_header, updated_content = self._has_xcode_header(full_path)
                 if has_header:
+                    succeeded = True
                     if not self.passive:
-                        self._remove_header(full_path, updated_content)
+                        succeeded = self._remove_header(full_path, updated_content)
 
                     modified_files = modified_files + 1
+                    self.printer.print_file(full_path, succeeded)
 
-                    if current_dir != root:
-                        current_dir = root
-                        self.printer.print_path(current_dir)
-                    self.printer.print_path(full_path)
-
-        print "\nTotal files {0}".format(total_files)
+        print "\nTotal files: {0}".format(total_files)
         if self.passive:
             print "Files it would modify: {0}".format(modified_files)
         else:
@@ -51,8 +60,12 @@ class Clorox:
         return Matcher(header).matches(), updated_content
 
     def _remove_header(self, file_path, updated_content):
-        with open(file_path, 'w') as file:
-            file.writelines(updated_content)
+        try:
+            with open(file_path, 'w') as file:
+                file.writelines(updated_content)
+                return True
+        except Exception:
+            return False
 
 
 def main(argv):
@@ -80,7 +93,7 @@ def main(argv):
 
 def usage():
     print "Usage:"
-    print "    clorox [PATH] [OPTIONS]"
+    print "    clorox [OPTIONS] [PATH]"
     print
     print "Parameters:"
     print "    path                Path to run clorox"
