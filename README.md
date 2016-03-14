@@ -1,4 +1,6 @@
 # Clorox
+[![Build Status](https://travis-ci.org/barbosa/clorox.svg?branch=master)](https://travis-ci.org/barbosa/clorox)
+
 
 ## Motivation
 
