@@ -10,6 +10,7 @@ setup(
   author = 'Gustavo Barbosa',
   author_email = 'gustavocsb@gmail.com',
   url = 'https://github.com/barbosa/clorox',
+  license = 'MIT',
   download_url = 'https://github.com/barbosa/clorox/tarball/%s' % VERSION,
   keywords = ['xcode', 'objective-c', 'swift', 'ios', 'macos'],
   classifiers = [],
