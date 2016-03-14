@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 import textwrap
-from clorox import Matcher
+from clorox.matcher import Matcher
 
 
 class MatcherTestCase(unittest.TestCase):
