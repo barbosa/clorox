@@ -15,7 +15,7 @@ Removes Xcode's file comment blocks cruft.
 //
 ```
 
-I've never liked this 8 lines above (7 coment lines + 1 blank one). It does nothing but just puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then yes, it makes sense to have it. Otherwise, it is just waste of LOC. I'll tell you why, line by line:
+I've never liked this 8 lines above (7 coment lines + 1 blank one). It does nothing but just puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then yes, it makes sense to have it. Otherwise, it is just a waste of LOC. I'll tell you why, line by line:
 
 1. Blank comment;
 2. File name: static. Xcode **doesn't change it** if you rename the file;
@@ -25,7 +25,6 @@ I've never liked this 8 lines above (7 coment lines + 1 blank one). It does noth
 6. Copyright, year and company: static. Xcode **doesn't update** the copyright with its current year. And also, it **does't update** the company name if changed (ok, maybe this is an uncommon case);
 7. Blank comment;
 8. Blank line.
-
 
 *NOTE:* a few months ago I discovered that I was not the only one against it. [Jon Reid](http://qualitycoding.org/template-code-clutter/) wrote something about it.
 
