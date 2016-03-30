@@ -44,6 +44,11 @@ $ sudo pip install clorox
 $ clorox MyProject
 ```
 
+<p align="center">
+<img src="https://cloud.githubusercontent.com/assets/235208/14130610/4ca6b108-f602-11e5-87e3-48fb8f398125.gif" width="600" />
+</p>
+
+
 ### Advanced
 
 ```
