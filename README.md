@@ -27,7 +27,7 @@ I've never liked this 8 lines above (7 coment lines + 1 blank one). It does noth
 8. Blank line.
 
 
-NOTE: a few months ago I discovered that I was not the only one against it. [Jon Reid](http://qualitycoding.org/template-code-clutter/) wrote something about it.
+*NOTE:* a few months ago I discovered that I was not the only one against it. [Jon Reid](http://qualitycoding.org/template-code-clutter/) wrote something about it.
 
 ## Installation
 
@@ -38,7 +38,7 @@ $ sudo pip install clorox
 ## Usage
 
 ### Basic
-:warning: WARNING: Make sure that your project is backed up through source control before doing anything
+:warning: WARNING: Make sure that your project is backed up through source control before doing anything.
 
 ```
 $ clorox MyProject
