@@ -68,7 +68,8 @@ class Clorox:
             return False
 
 
-def main(argv):
+def main():
+    argv = sys.argv[1:]
     try:
         opts, args = getopt.getopt(argv, "hp", ["help", "passive"])
     except getopt.GetoptError:
@@ -104,4 +105,4 @@ def usage():
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    main()

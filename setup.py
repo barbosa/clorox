@@ -14,5 +14,10 @@ setup(
   download_url = 'https://github.com/barbosa/clorox/tarball/%s' % VERSION,
   keywords = ['xcode', 'objective-c', 'swift', 'ios', 'macos'],
   classifiers = [],
-  install_requires = ['couleur']
+  install_requires = ['couleur'],
+  entry_points = {
+    'console_scripts': [
+      'clorox = clorox.clorox:main'
+    ]
+  }
 )
