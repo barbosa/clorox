@@ -22,7 +22,7 @@ I've never liked this 8 lines above (7 coment lines + 1 blank one). It does noth
 3. Project name: static. Xcode **doesn't change it** if you rename the project;
 4. Blank comment;
 5. File's creator and date: It just says **who** created the file (even if that person never touches it again) and **when**. Both infos are easily fetched with a simple `git log` or a `git blame` (which would be much more valuable);
-6. Copyright, year and company: static. Xcode **doesn't update** the copyright with its current year. And also, it **does't update** the company name if changed (ok, maybe this is a really uncommon case);
+6. Copyright, year and company: static. Xcode **doesn't update** the copyright with its current year. And also, it **does't update** the company name if changed (ok, maybe this is an uncommon case);
 7. Blank comment;
 8. Blank line.
 
@@ -46,7 +46,17 @@ $ clorox MyProject
 
 ### Advanced
 
-TODO
+```
+Usage:
+    clorox [OPTIONS] [PATH]
+
+Parameters:
+    path                Path to run clorox
+
+Options:
+    --passive, -p       prints the output without running the script
+    --help, -h          prints this help message
+```
 
 ## Author
 
