@@ -45,7 +45,7 @@ $ clorox MyProject
 ```
 
 <p align="center">
-<img src="https://cloud.githubusercontent.com/assets/235208/14130610/4ca6b108-f602-11e5-87e3-48fb8f398125.gif" width="600" />
+<img width="864" alt="clorox in action" src="https://cloud.githubusercontent.com/assets/235208/14130714/f29325ce-f602-11e5-8c49-45002d1d128a.png">
 </p>
 
 
