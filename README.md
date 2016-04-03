@@ -14,7 +14,7 @@
 //
 ```
 
-I've never liked this 8 lines above (7 coment lines + 1 blank one). It does nothing but just puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then yes, it makes sense to have it. Otherwise, it is just a waste of LOC. I'll tell you why, line by line:
+I've never liked this 8 lines above (7 coment lines + 1 blank one). It does nothing but puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then yes, it makes sense to have it. Otherwise, it is just a waste of LOC. I'll tell you why, line by line:
 
 Line      |    Explanation
 ----------|----------------
