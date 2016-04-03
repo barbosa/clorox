@@ -34,18 +34,17 @@ Line      |    Explanation
 `clorox` was written in python :snake: and distributed via [pypi](pypi.python.org). As your MacOS already comes with python installed, you can easily install it using the command below:
 
 ```
-$ sudo pip install clorox
+sudo pip install clorox
 ```
 
 ## Usage
 
-### Basic
 :warning: WARNING: Make sure that your project is backed up through source control before doing anything.
 
 In its basic usage, the command takes only one argument, which is the root path you want to run the cleaning:
 
 ```
-$ clorox MyProject
+clorox MyProject
 ```
 
 The following screenshots show the execution output and the `diff` of some modified files:
@@ -61,6 +60,38 @@ If you are not comfortable running the command and want to see which files would
 ```
 $ clorox -p MyProject
 ```
+
+## Note
+
+`clorox` only removes already existent file comment headers from existent source files :thinking:. So it is useful when you have a project with a bunch of files and then decide to get rid of them all. For new files, Xcode will still add the cruft. To change that, you need to modify the file templates you want.
+
+First, check which templates you have installed under your Xcode directory:
+
+```
+ls -al /Applications/Xcode.app/Contents/Developer/Library/Xcode/Templates/File\ Templates/Source/
+```
+
+It should print something like:
+
+```
+drwxr-xr-x  15 root  wheel  510 Mar 15 18:56 .
+drwxr-xr-x   7 root  wheel  238 Mar 15 20:19 ..
+drwxr-xr-x   7 root  wheel  238 Mar 15 18:56 C File.xctemplate
+drwxr-xr-x   7 root  wheel  238 Mar 15 18:56 C++ File.xctemplate
+drwxr-xr-x  21 root  wheel  714 Mar 15 18:56 Cocoa Class.xctemplate
+drwxr-xr-x   6 root  wheel  204 Mar 15 18:56 Header File.xctemplate
+drwxr-xr-x   9 root  wheel  306 Mar 15 18:56 Objective-C File.xctemplate
+drwxr-xr-x   5 root  wheel  170 Mar 15 18:56 Objective-C new superclass.xctemplate
+drwxr-xr-x   4 root  wheel  136 Mar 15 18:56 Playground Page.xctemplate
+drwxr-xr-x   8 root  wheel  272 Mar 15 20:40 Playground with Platform Choice.xctemplate
+drwxr-xr-x   6 root  wheel  204 Mar 15 20:40 Playground.xctemplate
+drwxr-xr-x   4 root  wheel  136 Mar 15 18:56 Sources Folder Swift File.xctemplate
+drwxr-xr-x   6 root  wheel  204 Mar 15 18:56 Swift File.xctemplate
+drwxr-xr-x   7 root  wheel  238 Mar 15 18:56 UI Test Case Class.xctemplate
+drwxr-xr-x   7 root  wheel  238 Mar 15 18:56 Unit Test Case Class.xctemplate
+```
+
+Then look for files named `___FILEBASENAME___.*` inside the folder you want and clean its content.
 
 ## Author
 
