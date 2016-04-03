@@ -63,7 +63,7 @@ $ clorox -p MyProject
 
 ## Note
 
-`clorox` only removes already existent file comment headers from existent source files :thinking_face:. So it is useful when you have a project with a bunch of files and then decide to get rid of them all. For new files, Xcode will still add the cruft. To change that, you need to modify the file templates you want.
+`clorox` only removes already existent file comment headers from existent source files. So it is useful when you have a project with a bunch of files and then decide to get rid of them all. For new files, Xcode will still add the cruft. To change that, you need to modify the file templates you want.
 
 First, check which templates you have installed under your Xcode directory:
 
