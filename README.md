@@ -19,11 +19,11 @@ I've never liked this 8 lines above (7 coment lines + 1 blank one). It does noth
 Line      |    Explanation
 ----------|----------------
 :one:     | Blank comment
-:two:     | File name: static. Xcode **doesn't change it** if you rename the file
-:three:   | Project name: static. Xcode **doesn't change it** if you rename the project
+:two:     | File name: static. Xcode **does not change it** if you rename the file
+:three:   | Project name: static. Xcode **does not change it** if you rename the project
 :four:    | Blank comment
 :five:    | File's creator and date: It just says **who** created the file (even if that person never touches it again) and **when**. Both infos are easily fetched with a simple `git log` or a `git blame` (which would be much more valuable)
-:six:     | Copyright, year and company: static. Xcode **doesn't update** the copyright with its current year. And also, it **does't update** the company name if changed (ok, maybe this is an uncommon case)
+:six:     | Copyright, year and company: static. Xcode **doesn't update** the copyright with its current year. And also, it **does not update** the company name if changed (ok, maybe this is an uncommon case)
 :seven:   | Blank comment
 :eight:   | Blank line
 
