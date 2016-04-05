@@ -92,7 +92,7 @@ drwxr-xr-x   7 root  wheel  238 Mar 15 18:56 Unit Test Case Class.xctemplate
 
 Then look for files named `___FILEBASENAME___.*` inside the folder you want and clean its content.
 
-## Acknowlogdements
+## Acknowlegdements
 
 - [@jonreid](https://github.com/jonreid) for sharing the same thoughts and [blogging](http://qualitycoding.org/template-code-clutter/) about it
 - [@gabrielfalcao](https://github.com/gabrielfalcao) for creating [couleur](https://github.com/gabrielfalcao/couleur) and make my life easier using these fancy colored outputs
