@@ -95,7 +95,7 @@ Then look for files named `___FILEBASENAME___.*` inside the folder you want and 
 ## Acknowlegdements
 
 - [@jonreid](https://github.com/jonreid) for sharing the same thoughts and [blogging](http://qualitycoding.org/template-code-clutter/) about it
-- [@gabrielfalcao](https://github.com/gabrielfalcao) for creating [couleur](https://github.com/gabrielfalcao/couleur) and make my life easier using these fancy colored outputs
+- [@gabrielfalcao](https://github.com/gabrielfalcao) for creating [couleur](https://github.com/gabrielfalcao/couleur) and making my life easier using these fancy colored outputs
 - [@marcelofabri](https://github.com/marcelofabri) for writing a [motivating article](http://equinocios.com/open-source/2016/03/01/o-mundo-e-mais-que-seu-umbigo/) on how to contribute to the open source initiative [pt-BR]
 
 ## Author
