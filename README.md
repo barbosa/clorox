@@ -27,7 +27,6 @@ Line      |    Explanation
 :seven:   | Blank comment
 :eight:   | Blank line
 
-*NOTE:* a few months ago I discovered that I was not the only one against it. [Jon Reid](http://qualitycoding.org/template-code-clutter/) wrote something about it.
 
 ## Installation
 
@@ -92,6 +91,12 @@ drwxr-xr-x   7 root  wheel  238 Mar 15 18:56 Unit Test Case Class.xctemplate
 ```
 
 Then look for files named `___FILEBASENAME___.*` inside the folder you want and clean its content.
+
+## Acknowlogdements
+
+- [@jonreid](https://github.com/jonreid) for sharing the same thoughts and [blogging](http://qualitycoding.org/template-code-clutter/) about it
+- [@gabrielfalcao](https://github.com/gabrielfalcao) for creating [couleur](https://github.com/gabrielfalcao/couleur) and make my life easier using these fancy colored outputs
+- [@marcelofabri](https://github.com/marcelofabri) for writing a [motivating article](http://equinocios.com/open-source/2016/03/01/o-mundo-e-mais-que-seu-umbigo/) on how to contribute to the open source initiative [pt-BR]
 
 ## Author
 
