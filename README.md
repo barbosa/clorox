@@ -14,7 +14,7 @@
 //
 ```
 
-I've never liked this 8 lines above (7 coment lines + 1 blank one). It does nothing but puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then yes, it makes sense to have it. Otherwise, it is just a waste of LOC. I'll tell you why, line by line:
+I've never liked these 8 lines above (7 comment lines + 1 blank one). It does nothing but puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then ok, it makes sense to have it. Otherwise, it's just a waste of LOC. I'll tell you why, line by line:
 
 Line      |    Explanation
 ----------|----------------
@@ -57,7 +57,7 @@ The following screenshots show the execution output and the `diff` of some modif
 If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--passive` or `-p`, like this:
 
 ```
-$ clorox -p MyProject
+clorox -p MyProject
 ```
 
 ## Note
