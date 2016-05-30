@@ -1,5 +1,6 @@
 # Clorox
 [![Build Status](https://travis-ci.org/barbosa/clorox.svg?branch=master)](https://travis-ci.org/barbosa/clorox)
+[![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
 
 Removes Xcode's file comment blocks cruft.
 
