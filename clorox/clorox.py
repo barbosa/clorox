@@ -54,7 +54,13 @@ class Clorox:
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
             content = file.readlines()
-            header_height = Matcher.HEADER_TEMPLATE.count('\n') + 1
+            header_height = Matcher.HEADER_TEMPLATE.count('\n')
+            for line in range(header_height, len(content)):
+                if content[line] == '\n':
+                    header_height = header_height + 1
+                else:
+                    break
+
             header = ''.join(content[:header_height])
             updated_content = content[header_height:]
         return Matcher(header).matches(), updated_content
