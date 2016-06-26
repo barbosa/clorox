@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/barbosa/clorox.svg?branch=master)](https://travis-ci.org/barbosa/clorox)
 [![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
+[![Dependency Status](https://gemnasium.com/barbosa/clorox.svg)](https://gemnasium.com/barbosa/clorox)
 
 ## Motivation
 
