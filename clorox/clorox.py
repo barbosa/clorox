@@ -1,7 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys, os
-import getopt
+import argparse
 from matcher import Matcher
 from printer import Printer
 
@@ -15,15 +15,16 @@ class Clorox:
         '.bundle', '.framework', '.lproj'
     )
 
-    def __init__(self, root_path, passive):
-        self.root_path = root_path
-        self.passive = passive
-        self.printer = Printer(root_path, passive)
+    def __init__(self, args):
+        self.args = args
+        self.printer = Printer(args)
 
     def run(self):
+        self.printer.print_start()
+
         total_files, modified_files = 0, 0
         current_dir = None
-        for root, dirs, files_list in os.walk(self.root_path):
+        for root, dirs, files_list in os.walk(self.args.dir):
             if root.endswith(self.IGNORED_DIRS):
                 continue
 
@@ -45,11 +46,7 @@ class Clorox:
                     modified_files = modified_files + 1
                     self.printer.print_file(full_path, succeeded)
 
-        print "\nTotal files: {0}".format(total_files)
-        if self.passive:
-            print "Files it would modify: {0}".format(modified_files)
-        else:
-            print "Modified files: {0}".format(modified_files)
+        self.printer.print_end(total_files, modified_files)
 
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
@@ -75,40 +72,17 @@ class Clorox:
 
 
 def main():
-    argv = sys.argv[1:]
-    try:
-        opts, args = getopt.getopt(argv, "hp", ["help", "passive"])
-    except getopt.GetoptError:
-        usage()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-d', '--dir')
+    parser.add_argument('-p', '--passive', dest='passive', action='store_true')
+    parser.add_argument('-q', '--quiet', dest='quiet', action='store_true')
+    args = parser.parse_args()
+
+    if not args.dir:
+        print 'You must provide a directory to be cleaned using the --dir option'
         sys.exit(2)
 
-    if not args:
-        usage()
-        sys.exit(2)
-
-    passive = False
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            usage()
-            sys.exit()
-        if opt in ("-p", "--passive"):
-            passive = True
-
-    root_path = "".join(args)
-    Clorox(root_path, passive).run()
-
-
-def usage():
-    print "Usage:"
-    print "    clorox [OPTIONS] [PATH]"
-    print
-    print "Parameters:"
-    print "    path                Path to run clorox"
-    print
-    print "Options:"
-    print "    --passive, -p       prints the output without running the script"
-    print "    --help, -h          prints this help message"
-
+    Clorox(args).run()
 
 if __name__ == '__main__':
     main()
