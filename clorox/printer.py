@@ -1,11 +1,14 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+from reporter import Reporter
 
 class Printer:
 
     def __init__(self, args):
         self.args = args
+        reporting = hasattr(args, 'reporter')
+        self.reporter = Reporter.from_identifier(args.reporter) if reporting else None
 
     def print_start(self):
         self._print(u'Running...')
@@ -35,7 +38,7 @@ class Printer:
             self._print("Modified files: {0}".format(modified_files))
 
     def _print(self, message):
-        if not self.args.quiet:
+        if not self.args.quiet and self.reporter is None:
             print message
 
     def _get_depth(self, path):

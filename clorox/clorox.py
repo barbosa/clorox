@@ -76,6 +76,7 @@ def main():
     parser.add_argument('-d', '--dir')
     parser.add_argument('-p', '--passive', dest='passive', action='store_true')
     parser.add_argument('-q', '--quiet', dest='quiet', action='store_true')
+    parser.add_argument('-r', '--reporter')
     args = parser.parse_args()
 
     if not args.dir:
