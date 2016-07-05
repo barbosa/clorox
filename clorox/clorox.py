@@ -22,7 +22,7 @@ class Clorox:
     def run(self):
         self.printer.print_start()
 
-        total_files, modified_files = 0, 0
+        all_files, modified_files = [], []
         current_dir = None
         for root, dirs, files_list in os.walk(self.args.dir):
             if root.endswith(self.IGNORED_DIRS):
@@ -35,7 +35,7 @@ class Clorox:
             for file_path in files_list:
                 if not file_path.endswith(self.ALLOWED_FORMATS):
                     continue
-                total_files = total_files + 1
+                all_files.append(file_path)
                 full_path = os.path.join(root, file_path)
                 has_header, updated_content = self._has_xcode_header(full_path)
                 if has_header:
@@ -43,10 +43,10 @@ class Clorox:
                     if not self.passive:
                         succeeded = self._remove_header(full_path, updated_content)
 
-                    modified_files = modified_files + 1
+                    modified_files.append(full_path)
                     self.printer.print_file(full_path, succeeded)
 
-        self.printer.print_end(total_files, modified_files)
+        self.printer.print_end(all_files, modified_files)
 
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:

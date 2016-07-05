@@ -7,12 +7,15 @@ class Reporter:
         clazz = TYPES.get(identifier, None)
         return clazz() if clazz else None
 
-    def report(self):
+    def report(self, all_files, modified_files):
         pass
 
 
 class JSONReporter(Reporter):
-    def report(self):
-        print "JSOOOOONNNNNNNN"
+    def report(self, all_files, modified_files):
+        print {
+            'status': 'clean' if len(modified_files) == 0 else 'dirty',
+            'files': modified_files
+        }
 
 TYPES = {'json': JSONReporter}
