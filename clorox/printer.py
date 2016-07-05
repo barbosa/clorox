@@ -4,29 +4,45 @@ import os
 
 class Printer:
 
-    def __init__(self, root_path, passive):
-        self.root_path = root_path
-        self.passive = passive
+    def __init__(self, args):
+        self.args = args
 
     def print_start(self):
-        print u'{0} Running '
+        self._print(u'Running...')
 
     def print_dir(self, path):
         dir_name = os.path.basename(path)
-        print Color.PURPLE + u'{0}{1}/'.format('  ' * self._get_depth(path), dir_name) + Color.END
+        self._print(Color.PURPLE + u'{0}{1}/'.format('  ' * self._get_depth(path), dir_name) + Color.END)
 
     def print_file(self, path, succeeded=True):
         file_name = os.path.basename(path)
         color = Color.RED if not succeeded else Color.END
-        label_color = Color.YELLOW if self.passive else Color.GREEN
-        feedback = '(would be modified)' if self.passive else '(done)'
-        print u'{0}{1} {2}'.format('  ' * self._get_depth(path), self._colored(file_name, color), self._colored(feedback, label_color))
+        label_color = Color.YELLOW if self.args.passive else Color.GREEN
+        feedback = '(would be modified)' if self.args.passive else '(done)'
+        self._print(
+            u'{0}{1} {2}'.format(
+                '  ' * self._get_depth(path),
+                self._colored(file_name, color),
+                self._colored(feedback, label_color)
+            )
+        )
+
+    def print_end(self, total_files, modified_files):
+        self._print("\nTotal files: {0}".format(total_files))
+        if self.args.passive:
+            self._print("Files it would modify: {0}".format(modified_files))
+        else:
+            self._print("Modified files: {0}".format(modified_files))
+
+    def _print(self, message):
+        if not self.args.quiet:
+            print message
 
     def _get_depth(self, path):
-        if path == self.root_path:
+        if path == self.args.dir:
             return 0
         if os.path.isdir(path):
-            return len(os.path.relpath(path, self.root_path).split('/'))
+            return len(os.path.relpath(path, self.args.dir).split('/'))
         else:
             return self._get_depth(os.path.dirname(path)) + 1
 
