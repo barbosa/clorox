@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 class Reporter:
 
-    TYPES = {}
-
     @classmethod
     def from_identifier(cls, identifier):
-        return Reporter.TYPES.get(identifier, None)
-
-    def report_start(self):
-        pass
+        clazz = TYPES.get(identifier, None)
+        return clazz() if clazz else None
 
     def report(self):
         pass
 
-    def report_end(self):
-        pass
+
+class JSONReporter(Reporter):
+    def report(self):
+        print "JSOOOOONNNNNNNN"
+
+TYPES = {'json': JSONReporter}

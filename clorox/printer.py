@@ -31,11 +31,14 @@ class Printer:
         )
 
     def print_end(self, total_files, modified_files):
-        self._print("\nTotal files: {0}".format(total_files))
-        if self.args.passive:
-            self._print("Files it would modify: {0}".format(modified_files))
+        if self.reporter:
+            self.reporter.report()
         else:
-            self._print("Modified files: {0}".format(modified_files))
+            self._print("\nTotal files: {0}".format(total_files))
+            if self.args.passive:
+                self._print("Files it would modify: {0}".format(modified_files))
+            else:
+                self._print("Modified files: {0}".format(modified_files))
 
     def _print(self, message):
         if not self.args.quiet and self.reporter is None:
