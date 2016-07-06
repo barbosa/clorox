@@ -24,7 +24,7 @@ class Clorox:
 
         all_files, modified_files = [], []
         current_dir = None
-        for root, dirs, files_list in os.walk(self.args.dir):
+        for root, dirs, files_list in os.walk(self.args.path):
             if root.endswith(self.IGNORED_DIRS):
                 continue
 
@@ -40,7 +40,7 @@ class Clorox:
                 has_header, updated_content = self._has_xcode_header(full_path)
                 if has_header:
                     succeeded = True
-                    if not self.passive:
+                    if not self.inspection:
                         succeeded = self._remove_header(full_path, updated_content)
 
                     modified_files.append(full_path)
@@ -73,13 +73,13 @@ class Clorox:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--dir')
-    parser.add_argument('-p', '--passive', dest='passive', action='store_true')
+    parser.add_argument('-p', '--path')
+    parser.add_argument('-i', '--inspection', dest='inspection', action='store_true')
     parser.add_argument('-q', '--quiet', dest='quiet', action='store_true')
-    parser.add_argument('-r', '--reporter')
+    parser.add_argument('-r', '--reporter', choices=['json'])
     args = parser.parse_args()
 
-    if not args.dir:
+    if not args.path:
         print 'You must provide a directory to be cleaned using the --dir option'
         sys.exit(2)
 

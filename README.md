@@ -45,7 +45,7 @@ sudo pip install clorox
 In its basic usage, the command takes only one argument, which is the root path you want to run the cleaning:
 
 ```
-clorox MyProject
+clorox --path MyProject
 ```
 
 The following screenshots show the execution output and the `diff` of some modified files:
@@ -56,10 +56,10 @@ The following screenshots show the execution output and the `diff` of some modif
 
 </p>
 
-If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--passive` or `-p`, like this:
+If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--inspection` or `-i`, like this:
 
 ```
-clorox -p MyProject
+clorox --path MyProject --inspection
 ```
 
 ## Note

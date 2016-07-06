@@ -20,8 +20,8 @@ class Printer:
     def print_file(self, path, succeeded=True):
         file_name = os.path.basename(path)
         color = Color.RED if not succeeded else Color.END
-        label_color = Color.YELLOW if self.args.passive else Color.GREEN
-        feedback = '(would be modified)' if self.args.passive else '(done)'
+        label_color = Color.YELLOW if self.args.inspection else Color.GREEN
+        feedback = '(would be modified)' if self.args.inspection else '(done)'
         self._print(
             u'{0}{1} {2}'.format(
                 '  ' * self._get_depth(path),
@@ -35,7 +35,7 @@ class Printer:
             self.reporter.report(all_files, modified_files)
         else:
             self._print("\nTotal files: {0}".format(len(all_files)))
-            if self.args.passive:
+            if self.args.inspection:
                 self._print("Files it would modify: {0}".format(len(modified_files)))
             else:
                 self._print("Modified files: {0}".format(len(modified_files)))
@@ -45,10 +45,10 @@ class Printer:
             print message
 
     def _get_depth(self, path):
-        if path == self.args.dir:
+        if path == self.args.path:
             return 0
         if os.path.isdir(path):
-            return len(os.path.relpath(path, self.args.dir).split('/'))
+            return len(os.path.relpath(path, self.args.path).split('/'))
         else:
             return self._get_depth(os.path.dirname(path)) + 1
 
