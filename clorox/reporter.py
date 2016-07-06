@@ -13,9 +13,10 @@ class Reporter:
 
 class JSONReporter(Reporter):
     def report(self, all_files, modified_files):
-        print {
+        import json
+        print json.dumps({
             'status': 'clean' if len(modified_files) == 0 else 'dirty',
             'files': modified_files
-        }
+        })
 
 TYPES = {'json': JSONReporter}
