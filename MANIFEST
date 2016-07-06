@@ -5,3 +5,4 @@ clorox/__init__.py
 clorox/clorox.py
 clorox/matcher.py
 clorox/printer.py
+clorox/reporter.py
