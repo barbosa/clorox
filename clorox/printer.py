@@ -1,11 +1,14 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 import os
+from reporter import Reporter
 
 class Printer:
 
     def __init__(self, args):
         self.args = args
+        reporting = hasattr(args, 'reporter')
+        self.reporter = Reporter.from_identifier(args.reporter) if reporting else None
 
     def print_start(self):
         self._print(u'Running...')
@@ -17,8 +20,8 @@ class Printer:
     def print_file(self, path, succeeded=True):
         file_name = os.path.basename(path)
         color = Color.RED if not succeeded else Color.END
-        label_color = Color.YELLOW if self.args.passive else Color.GREEN
-        feedback = '(would be modified)' if self.args.passive else '(done)'
+        label_color = Color.YELLOW if self.args.inspection else Color.GREEN
+        feedback = '(would be modified)' if self.args.inspection else '(done)'
         self._print(
             u'{0}{1} {2}'.format(
                 '  ' * self._get_depth(path),
@@ -27,22 +30,25 @@ class Printer:
             )
         )
 
-    def print_end(self, total_files, modified_files):
-        self._print("\nTotal files: {0}".format(total_files))
-        if self.args.passive:
-            self._print("Files it would modify: {0}".format(modified_files))
+    def print_end(self, all_files, modified_files):
+        if self.reporter:
+            self.reporter.report(all_files, modified_files)
         else:
-            self._print("Modified files: {0}".format(modified_files))
+            self._print("\nTotal files: {0}".format(len(all_files)))
+            if self.args.inspection:
+                self._print("Files it would modify: {0}".format(len(modified_files)))
+            else:
+                self._print("Modified files: {0}".format(len(modified_files)))
 
     def _print(self, message):
-        if not self.args.quiet:
+        if not self.args.quiet and self.reporter is None:
             print message
 
     def _get_depth(self, path):
-        if path == self.args.dir:
+        if path == self.args.path:
             return 0
         if os.path.isdir(path):
-            return len(os.path.relpath(path, self.args.dir).split('/'))
+            return len(os.path.relpath(path, self.args.path).split('/'))
         else:
             return self._get_depth(os.path.dirname(path)) + 1
 

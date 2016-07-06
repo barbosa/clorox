@@ -45,7 +45,7 @@ sudo pip install clorox
 In its basic usage, the command takes only one argument, which is the root path you want to run the cleaning:
 
 ```
-clorox MyProject
+clorox --path MyProject
 ```
 
 The following screenshots show the execution output and the `diff` of some modified files:
@@ -56,10 +56,18 @@ The following screenshots show the execution output and the `diff` of some modif
 
 </p>
 
-If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--passive` or `-p`, like this:
+## Advanced Usage
+
+If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--inspection` or `-i`, like this:
 
 ```
-clorox -p MyProject
+clorox --path MyProject --inspection
+```
+
+By default, `clorox` prints out a colored tree indicating which files were modified (or inspected). If you're using `clorox` as a step of your development process, you might consider passing a `--report` argument. Currently, the only type of report that `clorox` supports is `json`. So you would do something like:
+
+```
+clorox --path MyProject --report json
 ```
 
 ## Note
