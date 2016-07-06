@@ -40,7 +40,7 @@ class Clorox:
                 has_header, updated_content = self._has_xcode_header(full_path)
                 if has_header:
                     succeeded = True
-                    if not self.inspection:
+                    if not self.args.inspection:
                         succeeded = self._remove_header(full_path, updated_content)
 
                     modified_files.append(full_path)
