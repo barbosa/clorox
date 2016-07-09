@@ -14,21 +14,25 @@ class Printer:
         self._print(u'Running...')
 
     def print_dir(self, path):
-        dir_name = os.path.basename(path)
-        self._print(Color.PURPLE + u'{0}{1}/'.format('  ' * self._get_depth(path), dir_name) + Color.END)
+        dirname = os.path.basename(path)
+        tabs = self._tabs(path)
+        self._print(Color.PURPLE + u'{0}{1}/'.format(tabs, dirname) + Color.END)
 
     def print_file(self, path, succeeded=True):
         file_name = os.path.basename(path)
         color = Color.RED if not succeeded else Color.END
         label_color = Color.YELLOW if self.args.inspection else Color.GREEN
         feedback = '(would be modified)' if self.args.inspection else '(done)'
+
         self._print(
-            u'{0}{1} {2}'.format(
-                '  ' * self._get_depth(path),
+            u'{0}{1} {2}'.format(self._tabs(path),
                 self._colored(file_name, color),
                 self._colored(feedback, label_color)
             )
         )
+
+    def _tabs(self, path):
+        return ' ' * 2 * len(path.split('/'))
 
     def print_end(self, all_files, modified_files):
         if self.reporter:
@@ -43,14 +47,6 @@ class Printer:
     def _print(self, message):
         if not self.args.quiet and self.reporter is None:
             print message
-
-    def _get_depth(self, path):
-        if path == self.args.path:
-            return 0
-        if os.path.isdir(path):
-            return len(os.path.relpath(path, self.args.path).split('/'))
-        else:
-            return self._get_depth(os.path.dirname(path)) + 1
 
     def _colored(self, string, color):
         return '%s%s%s' % (color, string, Color.END)

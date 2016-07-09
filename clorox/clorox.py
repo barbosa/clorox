@@ -18,35 +18,40 @@ class Clorox:
     def __init__(self, args):
         self.args = args
         self.printer = Printer(args)
+        self.all_files, self.modified_files = [], []
 
     def run(self):
         self.printer.print_start()
 
-        all_files, modified_files = [], []
         current_dir = None
-        for root, dirs, files_list in os.walk(self.args.path):
-            if root.endswith(self.IGNORED_DIRS):
-                continue
+        for path in self.args.path:
+            if os.path.isfile(path):
+                self._process_file(path)
+            elif os.path.isdir(path):
+                for dirpath, dirnames, filenames in os.walk(path):
+                    if dirpath.endswith(self.IGNORED_DIRS):
+                        continue
 
-            if current_dir != root:
-                current_dir = root
-                self.printer.print_dir(current_dir)
+                    if current_dir != dirpath:
+                        current_dir = dirpath
+                        self.printer.print_dir(current_dir)
 
-            for file_path in files_list:
-                if not file_path.endswith(self.ALLOWED_FORMATS):
-                    continue
-                all_files.append(file_path)
-                full_path = os.path.join(root, file_path)
-                has_header, updated_content = self._has_xcode_header(full_path)
-                if has_header:
-                    succeeded = True
-                    if not self.args.inspection:
-                        succeeded = self._remove_header(full_path, updated_content)
+                    for filename in filenames:
+                        if filename.endswith(self.ALLOWED_FORMATS):
+                            self._process_file(os.path.join(dirpath, filename))
 
-                    modified_files.append(full_path)
-                    self.printer.print_file(full_path, succeeded)
+        self.printer.print_end(self.all_files, self.modified_files)
 
-        self.printer.print_end(all_files, modified_files)
+    def _process_file(self, file_path):
+        self.all_files.append(file_path)
+        has_header, updated_content = self._has_xcode_header(file_path)
+        if has_header:
+            succeeded = True
+            if not self.args.inspection:
+                succeeded = self._remove_header(file_path, updated_content)
+
+            self.modified_files.append(file_path)
+            self.printer.print_file(file_path, succeeded)
 
     def _has_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
@@ -73,7 +78,7 @@ class Clorox:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path')
+    parser.add_argument('-p', '--path', nargs='+', required=True)
     parser.add_argument('-i', '--inspection', dest='inspection', action='store_true')
     parser.add_argument('-q', '--quiet', dest='quiet', action='store_true')
     parser.add_argument('-r', '--reporter', choices=['json'])
