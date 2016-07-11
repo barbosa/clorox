@@ -58,12 +58,14 @@ The following screenshots show the execution output and the `diff` of some modif
 
 ## Advanced Usage
 
+### Inspection
 If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--inspection` or `-i`, like this:
 
 ```
 clorox --path MyProject --inspection
 ```
 
+### Report
 By default, `clorox` prints out a colored tree indicating which files were modified (or inspected). If you're using `clorox` as a step of your development process, you might consider passing a `--report` argument. Currently, the only type of report that `clorox` supports is `json`. So you would do something like:
 
 ```
