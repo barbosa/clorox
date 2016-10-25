@@ -1,4 +1,4 @@
-<img src="https://cloud.githubusercontent.com/assets/235208/14230584/449b1f4e-f92c-11e5-8075-9c7fe628eb28.png"/>
+<img src="https://cloud.githubusercontent.com/assets/235208/19689375/2b5fd6b2-9a9b-11e6-843b-bb4c2d74391d.png"/>
 
 [![Build Status](https://travis-ci.org/barbosa/clorox.svg?branch=master)](https://travis-ci.org/barbosa/clorox)
 [![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
