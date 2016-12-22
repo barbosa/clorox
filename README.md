@@ -32,9 +32,10 @@ Line      |    Explanation
 
 ## Installation
 
-`clorox` was written in python :snake: and distributed via [pypi](pypi.python.org). As your MacOS already comes with python installed, you can easily install it using the command below:
+`clorox` was written in python :snake: and distributed via [pypi](pypi.python.org). As your MacOS already comes with python installed, you can easily install it using the commands below:
 
 ```
+sudo easy_install pip  # in case you don't have it already installed
 sudo pip install clorox
 ```
 
