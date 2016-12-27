@@ -44,7 +44,7 @@ class Clorox:
 
     def _process_file(self, file_path):
         self.all_files.append(file_path)
-        has_header, updated_content = self._has_xcode_header(file_path)
+        has_header, updated_content = self._find_xcode_header(file_path)
         if has_header:
             succeeded = True
             if not self.args.inspection:
@@ -53,19 +53,14 @@ class Clorox:
             self.modified_files.append(file_path)
             self.printer.print_file(file_path, succeeded)
 
-    def _has_xcode_header(self, file_path):
+    def _find_xcode_header(self, file_path):
         with open(file_path, 'r') as file:
-            content = file.readlines()
-            header_height = Matcher.HEADER_TEMPLATE.count('\n')
-            for line in range(header_height, len(content)):
-                if content[line] == '\n':
-                    header_height = header_height + 1
-                else:
-                    break
+            content = ''.join(file.readlines())
+        header = Matcher(content, trim_new_lines=self.args.trim).match()
+        if header is None:
+            return False, None
 
-            header = ''.join(content[:header_height])
-            updated_content = content[header_height:]
-        return Matcher(header).matches(), updated_content
+        return True, content.replace(header, '')
 
     def _remove_header(self, file_path, updated_content):
         try:
@@ -78,10 +73,14 @@ class Clorox:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path', nargs='+', required=True)
-    parser.add_argument('-i', '--inspection', dest='inspection', action='store_true')
-    parser.add_argument('-q', '--quiet', dest='quiet', action='store_true')
-    parser.add_argument('-r', '--reporter', choices=['json'])
+    parser.add_argument('-p', '--path', nargs='+', required=True,
+        help='directory of file to run clorox')
+    parser.add_argument('-i', '--inspection', dest='inspection',
+        action='store_true', help='do not change files (only inspect them)')
+    parser.add_argument('-q', '--quiet', dest='quiet', action='store_true',
+        help='do not print any output')
+    parser.add_argument('-r', '--reporter', choices=['json'],
+        help='render output using a custom report')
     args = parser.parse_args()
 
     if not args.path:
