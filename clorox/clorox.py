@@ -75,6 +75,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', '--path', nargs='+', required=True,
         help='directory of file to run clorox')
+    parser.add_argument('-t', '--trim', dest='trim', action='store_true',
+        default=False, help='trim new lines around header')
     parser.add_argument('-i', '--inspection', dest='inspection',
         action='store_true', help='do not change files (only inspect them)')
     parser.add_argument('-q', '--quiet', dest='quiet', action='store_true',
