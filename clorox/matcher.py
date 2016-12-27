@@ -5,7 +5,7 @@ import re
 
 class Matcher:
 
-    HEADER_TEMPLATE = (r""
+    _DEFAULT_HEADER_TEMPLATE = (r""
         "\/\/\n"
         "\/\/.*\..*\n"
         "\/\/.*\n"
@@ -15,8 +15,18 @@ class Matcher:
         "\/\/\n"
     )
 
-    def __init__(self, header):
-        self.header = header
+    def __init__(self, content, trim_new_lines=False):
+        self.content = content
+        self.trim_new_lines = trim_new_lines
 
-    def matches(self):
-        return re.match(self.HEADER_TEMPLATE, self.header) is not None
+    @property
+    def header(self):
+        trim_regex = r"\s*" if self.trim_new_lines else r""
+        return r"{trim_regex}{core}{trim_regex}".format(
+            trim_regex=trim_regex,
+            core=self._DEFAULT_HEADER_TEMPLATE
+        )
+
+    def match(self):
+        result = re.match(self.header, self.content)
+        return result.group(0) if result else None
