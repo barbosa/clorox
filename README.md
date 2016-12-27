@@ -1,4 +1,4 @@
-<img src="https://cloud.githubusercontent.com/assets/235208/14230584/449b1f4e-f92c-11e5-8075-9c7fe628eb28.png"/>
+<img src="https://cloud.githubusercontent.com/assets/235208/19689375/2b5fd6b2-9a9b-11e6-843b-bb4c2d74391d.png"/>
 
 [![Build Status](https://travis-ci.org/barbosa/clorox.svg?branch=master)](https://travis-ci.org/barbosa/clorox)
 [![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
@@ -32,9 +32,10 @@ Line      |    Explanation
 
 ## Installation
 
-`clorox` was written in python :snake: and distributed via [pypi](pypi.python.org). As your MacOS already comes with python installed, you can easily install it using the command below:
+`clorox` was written in python :snake: and distributed via [pypi](pypi.python.org). As your MacOS already comes with python installed, you can easily install it using the commands below:
 
 ```
+sudo easy_install pip  # in case you don't have it already installed
 sudo pip install clorox
 ```
 
@@ -58,12 +59,14 @@ The following screenshots show the execution output and the `diff` of some modif
 
 ## Advanced Usage
 
+### Inspection
 If you are not comfortable running the command and want to see which files would be affected by its execution, simply add the option `--inspection` or `-i`, like this:
 
 ```
 clorox --path MyProject --inspection
 ```
 
+### Report
 By default, `clorox` prints out a colored tree indicating which files were modified (or inspected). If you're using `clorox` as a step of your development process, you might consider passing a `--report` argument. Currently, the only type of report that `clorox` supports is `json`. So you would do something like:
 
 ```
