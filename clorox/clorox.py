@@ -1,15 +1,14 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-import os
-import sys
+import os, sys
 import argparse
 from matcher import Matcher
 from printer import Printer
 
-
 class Clorox:
 
-    ALLOWED_FORMATS = ('.swift', '.h', '.m')
+    ALLOWED_FORMATS = ('.swift',
+    '.h', '.m')
     IGNORED_DIRS = (
         '.xcdatamodel', '.xcdatamodeld'
         '.xcassets', '.imageset',
