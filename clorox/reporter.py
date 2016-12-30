@@ -1,5 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
+
+
 class Reporter:
 
     @classmethod
@@ -18,5 +20,6 @@ class JSONReporter(Reporter):
             'status': 'clean' if len(modified_files) == 0 else 'dirty',
             'files': modified_files
         })
+
 
 TYPES = {'json': JSONReporter}

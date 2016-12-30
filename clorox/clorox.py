@@ -1,6 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-import sys, os
+import os
+import sys
 import argparse
 from matcher import Matcher
 from printer import Printer
@@ -73,23 +74,39 @@ class Clorox:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-p', '--path', nargs='+', required=True,
-        help='directory of file to run clorox')
-    parser.add_argument('-t', '--trim', dest='trim', action='store_true',
-        default=True, help='trim new lines around header')
-    parser.add_argument('-i', '--inspection', dest='inspection',
-        action='store_true', help='do not change files (only inspect them)')
-    parser.add_argument('-q', '--quiet', dest='quiet', action='store_true',
-        help='do not print any output')
-    parser.add_argument('-r', '--reporter', choices=['json'],
-        help='render output using a custom report')
+    parser.add_argument('-p', '--path',
+                        nargs='+',
+                        required=True,
+                        help='directory of file to run clorox')
+
+    parser.add_argument('-t', '--trim',
+                        dest='trim',
+                        action='store_true',
+                        default=True,
+                        help='trim new lines around header')
+
+    parser.add_argument('-i', '--inspection',
+                        dest='inspection',
+                        action='store_true',
+                        help='do not change files (only inspect them)')
+
+    parser.add_argument('-q', '--quiet',
+                        dest='quiet',
+                        action='store_true',
+                        help='do not print any output')
+
+    parser.add_argument('-r', '--reporter',
+                        choices=['json'],
+                        help='render output using a custom report')
+
     args = parser.parse_args()
 
     if not args.path:
-        print 'You must provide a directory to be cleaned using the --dir option'
+        print 'You must provide a directory using the --dir option'
         sys.exit(2)
 
     Clorox(args).run()
+
 
 if __name__ == '__main__':
     main()

@@ -5,7 +5,8 @@ import re
 
 class Matcher:
 
-    _DEFAULT_HEADER_TEMPLATE = (r""
+    _DEFAULT_HEADER_TEMPLATE = (
+        r""
         "\/\/\n"
         "\/\/.*\..*\n"
         "\/\/.*\n"
