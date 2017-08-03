@@ -1,6 +1,6 @@
-from distutils.core import setup
+from setuptools import setup
 
-VERSION = '0.6'
+VERSION = '0.6.1'
 
 setup(
   name = 'clorox',
