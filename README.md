@@ -1,6 +1,6 @@
 <img src="https://cloud.githubusercontent.com/assets/235208/19689375/2b5fd6b2-9a9b-11e6-843b-bb4c2d74391d.png"/>
 
-![Build](https://github.com/barbosa/clorox/workflows/Build/badge.svg)
+[![Build](https://github.com/barbosa/clorox/workflows/Build/badge.svg)](https://github.com/barbosa/clorox/actions?query=workflow%3ABuild)
 [![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
 
 ## Motivation
