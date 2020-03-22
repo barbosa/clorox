@@ -54,7 +54,7 @@ class Printer:
 
     def _print(self, message):
         if not self.args.quiet and self.reporter is None:
-            print message
+            print(message)
 
     def _colored(self, string, color):
         return '%s%s%s' % (color, string, Color.END)

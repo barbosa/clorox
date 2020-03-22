@@ -102,7 +102,7 @@ def main():
     args = parser.parse_args()
 
     if not args.path:
-        print 'You must provide a directory using the --dir option'
+        print('You must provide a directory using the --dir option')
         sys.exit(2)
 
     Clorox(args).run()
