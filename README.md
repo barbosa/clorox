@@ -2,7 +2,6 @@
 
 ![Build](https://github.com/barbosa/clorox/workflows/Build/badge.svg)
 [![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
-[![Dependency Status](https://gemnasium.com/barbosa/clorox.svg)](https://gemnasium.com/barbosa/clorox)
 
 ## Motivation
 
