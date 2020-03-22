@@ -1,6 +1,6 @@
 <img src="https://cloud.githubusercontent.com/assets/235208/19689375/2b5fd6b2-9a9b-11e6-843b-bb4c2d74391d.png"/>
 
-[![Build Status](https://travis-ci.org/barbosa/clorox.svg?branch=master)](https://travis-ci.org/barbosa/clorox)
+![Build](https://github.com/barbosa/clorox/workflows/Build/badge.svg)
 [![PyPI Version](https://img.shields.io/pypi/v/clorox.svg)](https://pypi.python.org/pypi/clorox)
 [![Dependency Status](https://gemnasium.com/barbosa/clorox.svg)](https://gemnasium.com/barbosa/clorox)
 
@@ -18,16 +18,16 @@
 
 I've never liked these 8 lines above (7 comment lines + 1 blank one). It does nothing but puts a lot of unuseful information in the beginning of your Objective-C/Swift files. If it is an open source project or if it is gonna be distributed, then ok, it makes sense to have it. Otherwise, it's just a waste of LOC. I'll tell you why, line by line:
 
-Line      |    Explanation
-----------|----------------
-:one:     | Blank comment
-:two:     | File name: static. Xcode **does not change it** if you rename the file
-:three:   | Project name: static. Xcode **does not change it** if you rename the project
-:four:    | Blank comment
-:five:    | File's creator and date: It just says **who** created the file (even if that person never touches it again) and **when**. Both infos are easily fetched with a simple `git log` or a `git blame` (which would be much more valuable)
-:six:     | Copyright, year and company: static. Xcode **does not update** the copyright with its current year. And also, it **does not update** the company name if changed (ok, maybe this is an uncommon case)
-:seven:   | Blank comment
-:eight:   | Blank line
+| Line    | Explanation                                                                                                                                                                                                                          |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| :one:   | Blank comment                                                                                                                                                                                                                        |
+| :two:   | File name: static. Xcode **does not change it** if you rename the file                                                                                                                                                               |
+| :three: | Project name: static. Xcode **does not change it** if you rename the project                                                                                                                                                         |
+| :four:  | Blank comment                                                                                                                                                                                                                        |
+| :five:  | File's creator and date: It just says **who** created the file (even if that person never touches it again) and **when**. Both infos are easily fetched with a simple `git log` or a `git blame` (which would be much more valuable) |
+| :six:   | Copyright, year and company: static. Xcode **does not update** the copyright with its current year. And also, it **does not update** the company name if changed (ok, maybe this is an uncommon case)                                |
+| :seven: | Blank comment                                                                                                                                                                                                                        |
+| :eight: | Blank line                                                                                                                                                                                                                           |
 
 
 ## Installation
