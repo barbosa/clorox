@@ -51,8 +51,8 @@ clorox --path MyProject
 The following screenshots show the execution output and the `diff` of some modified files:
 
 <p align="center">
-<img width="432" alt="clorox in action" src="https://cloud.githubusercontent.com/assets/235208/14130792/80017618-f603-11e5-8957-9897495c08b1.png">
-<img width="432" alt="screen shot 2016-03-29 at 11 10 12 pm" src="https://cloud.githubusercontent.com/assets/235208/14130793/84385bd4-f603-11e5-83aa-ee335e5222e6.png">
+<img width="400" alt="clorox in action" src="https://cloud.githubusercontent.com/assets/235208/14130792/80017618-f603-11e5-8957-9897495c08b1.png">
+<img width="400" alt="screen shot 2016-03-29 at 11 10 12 pm" src="https://cloud.githubusercontent.com/assets/235208/14130793/84385bd4-f603-11e5-83aa-ee335e5222e6.png">
 
 </p>
 
